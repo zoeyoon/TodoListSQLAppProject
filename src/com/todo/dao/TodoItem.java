@@ -11,7 +11,7 @@ public class TodoItem {
     private String due_date;
     private int id;
     private int is_completed;
-
+    
     public TodoItem(String title, String desc, String category, String due_date){
         this.title=title;
         this.desc=desc;
@@ -19,6 +19,7 @@ public class TodoItem {
         this.due_date = due_date;
         SimpleDateFormat date = new SimpleDateFormat("YYYY/MM/dd HH:mm:ss");
         this.current_date = date.format(new Date());
+
         
     }
     
@@ -62,6 +63,7 @@ public class TodoItem {
     	this.due_date = due_date;
     }
     
+    
     public int getId(){
     	return id;
     }
@@ -79,8 +81,9 @@ public class TodoItem {
     }
      
     public String toString() {
+    	
     	if (is_completed == 0)
-    		return id + " [" + category + "] " + title + " - " + desc + " - " + due_date + " - " + current_date;
+    		return id + " [" + category + "] " + title + " - " + desc +  " - " + due_date + " - " + current_date;
     	return id + " [" + category + "] " + title + " [V] - " + desc + " - " + due_date + " - " + current_date;
     }
 }

@@ -34,7 +34,7 @@ public class TodoMain {
 			case "del":
 				TodoUtil.deleteItem(l);
 				break;
-				
+			
 			case "edit":
 				TodoUtil.updateItem(l);
 				break;
@@ -72,21 +72,20 @@ public class TodoMain {
 				TodoUtil.findList(l, keyword);
 				break;
 				
-				
 			case "find_cate":
 				String cate = sc.nextLine().trim();
 				TodoUtil.findCateList(l, cate);
 				break;
 				
 			case "comp":
-				int num = sc.nextInt();
-				TodoUtil.completeItem(l,num);
-				break;
-			
-			case "ls_comp":
-				TodoUtil.listComp(l);
+				int num1 = sc.nextInt();
+				TodoUtil.completeItem(l,num1);
 				break;
 				
+			case "ls_comp":
+				System.out.println("\n========= 완료된 항목 ==========");
+				TodoUtil.listComp(l);
+				break;
 				
 			case "help":
 				Menu.displaymenu();
@@ -104,6 +103,7 @@ public class TodoMain {
 			
 			if(isList) l.getList();
 		} while (!quit);
+		System.out.println("\nHave a Wonderful Day!");
 		DbConnect.closeConnection();
 	}
 }

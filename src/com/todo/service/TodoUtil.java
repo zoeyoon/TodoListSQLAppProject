@@ -9,7 +9,8 @@ public class TodoUtil {
 	
 	public static void createItem(TodoList l) {
 		
-		String title, desc, category, due_date;
+		String title, desc, category, due_date, location;
+		int importance;
 		Scanner sc = new Scanner(System.in);
 		
 		System.out.print("\n"
@@ -24,13 +25,19 @@ public class TodoUtil {
 		}
 		
 		System.out.print("카테고리를 입력하세요 > ");
-		category = sc.nextLine();
+		category = sc.nextLine().trim();
 		
 		System.out.print("설명 내용을 입력하세요 > ");
-		desc = sc.nextLine();
+		desc = sc.nextLine().trim();
 		
 		System.out.print("마감 일자를 입력하세요 (년도/월/일) > ");
-		due_date = sc.nextLine();
+		due_date = sc.nextLine().trim();
+		
+		System.out.print("위치를 입력하세요 > ");
+		location = sc.nextLine().trim();
+		
+		System.out.print("중요도를 입력하세요 (1 to 3) > ");
+		importance = sc.nextInt();
 		
 		TodoItem t = new TodoItem(title, desc, category, due_date);
 		if(l.addItem(t) > 0)
@@ -47,7 +54,6 @@ public class TodoUtil {
 			System.out.println("========== 삭제 완료! ==========");
 	}
 
-
 	public static void updateItem(TodoList l) {
 		String new_title, new_description, new_category, new_due_date;
 		Scanner sc = new Scanner(System.in);
@@ -60,10 +66,10 @@ public class TodoUtil {
 		System.out.print("새로운 제목을 입력하세요 > ");
 		new_title = sc.nextLine().trim();
 			
-			/*if (l.isDuplicate(new_title)) {
-				System.out.println("======== 중복된 제목입니다 ========");
-				return;
-			}*/
+		if (l.isDuplicate(new_title)) {
+			System.out.println("======== 중복된 제목입니다 ========");
+			return;
+		}
 			
 		System.out.print("새로운 카테고리를 입력하세요 > ");
 		new_category = sc.nextLine().trim();
@@ -71,9 +77,9 @@ public class TodoUtil {
 		System.out.print("새로운 설명 내용을 입력하세요 > ");
 		new_description = sc.nextLine().trim();
 			
-		System.out.print("새로운 마감일자를 입력하세요 > ");
+		System.out.print("새로운 마감일자를 입력하세요 (년도/월/일) > ");
 		new_due_date = sc.nextLine().trim();
-			
+
 		TodoItem t = new TodoItem(new_title, new_description, new_category, new_due_date);
 		t.setId(num);
 		if(l.updateItem(t) > 0)
@@ -137,4 +143,5 @@ public class TodoUtil {
 		}
 		System.out.printf("\n총 %d개의 항목을 찾았습니다.\n", count);
 	}
+	
 }
